@@ -12,10 +12,10 @@
             <input type="text" name="title"/>
           </td></tr>
           <tr><th>checkbox</th><td><label>
-            <input type="checkbox" name="chk" value="chkval"/>
+            <input type="checkbox" name="chk" value="chkval" checked=checked/>
           </label></td></tr>
           <tr><th>radio1</th><td><label>
-            <input type="radio" name="rdo" value="rdoval1" />
+            <input type="radio" name="rdo" value="rdoval1" checked=checked/>
           </label></td></tr>
           <tr><th>radio2</th><td><label>
             <input type="radio" name="rdo" value="rdoval2" />
@@ -23,7 +23,7 @@
           <tr><th>select</th><td><label>
             <select name="select">
               <option value="1">1</option>
-              <option value="2">2</option>
+              <option value="2" selected=selected>2</option>
             </select>
           </label></td></tr>
           <tr><th>textarea</th><td>

@@ -1,13 +1,11 @@
-# goji-wiki
+# anyweb
 
-Example Wiki application using goji/pango2/genmai
-
-![](http://go-gyazo.appspot.com/057e8a17bb9e6aaf.png)
+Example web application using goji/pango2
 
 ## Usage
 
 ```
-$ ./goji-wiki
+$ ./anyweb
 ```
 
 Open browser http://localhost:8000/
@@ -19,7 +17,7 @@ Open browser http://localhost:8000/
 ## Installation
 
 ```
-$ go get github.com/mattn/goji-wiki
+$ go get github.com/sheercat/anyweb
 ```
 
 ## License

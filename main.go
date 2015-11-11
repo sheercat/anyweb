@@ -42,6 +42,10 @@ func inquiry(c web.C, w http.ResponseWriter, r *http.Request) {
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}
+			session.Values["formData"] = nil
+			if err := session.Save(r, w); err != nil {
+				pp.Println(err)
+			}
 		}
 		w.Write(bytes)
 	}
@@ -50,7 +54,7 @@ func inquiry(c web.C, w http.ResponseWriter, r *http.Request) {
 func sendInquiry(c web.C, w http.ResponseWriter, r *http.Request) {
 
 	formData := make(map[string]interface{})
-	keys := []string{"body", "title", "rdo", "chk"}
+	keys := []string{"body", "title", "rdo", "chk", "select"}
 	for _, key := range keys {
 		formData[key] = r.FormValue(key)
 	}
