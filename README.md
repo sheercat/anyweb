@@ -1,6 +1,8 @@
 # anyweb
 
-Example web application using goji/pango2
+Example web application using goji/pongo2/fillinform
+
+this is test for https://github.com/sheercat/fillinform
 
 ## Usage
 
@@ -23,7 +25,3 @@ $ go get github.com/sheercat/anyweb
 ## License
 
 MIT
-
-## Author
-
-Yasuhiro Matsumoto (a.k.a mattn)
