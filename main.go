@@ -38,10 +38,7 @@ func inquiry(c web.C, w http.ResponseWriter, r *http.Request) {
 		formData := session.Values["formData"]
 		if formData != nil {
 			pp.Println(formData)
-			bytes, err = fillinform.Fill(&bytes, formData.(map[string]interface{}), nil)
-			if err != nil {
-				http.Error(w, err.Error(), http.StatusInternalServerError)
-			}
+			bytes = fillinform.Fill(bytes, formData.(map[string][]string), nil)
 			session.Values["formData"] = nil
 			if err := session.Save(r, w); err != nil {
 				pp.Println(err)
@@ -53,17 +50,19 @@ func inquiry(c web.C, w http.ResponseWriter, r *http.Request) {
 
 func sendInquiry(c web.C, w http.ResponseWriter, r *http.Request) {
 
-	formData := make(map[string]interface{})
-	keys := []string{"body", "title", "rdo", "chk", "select"}
-	for _, key := range keys {
-		formData[key] = r.FormValue(key)
+	formData := make(map[string][]string)
+	if err := r.ParseForm(); err != nil {
+		panic("parse error")
+	} else {
+		formData = r.PostForm
 	}
+	pp.Println(formData)
 
 	session, _ := store.Get(r, "inqury")
 	session.Values["message"] = "send inquery"
 
 	buf := new(bytes.Buffer)
-	gob.Register(map[string]interface{}{})
+	gob.Register(map[string][]string{})
 	enc := gob.NewEncoder(buf)
 	if err := enc.Encode(&formData); err != nil {
 		pp.Println(err)
@@ -77,6 +76,7 @@ func sendInquiry(c web.C, w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
 	pongo2.DefaultLoader.SetBaseDir("view")
 
 	goji.Use(middleware.Recoverer)
